@@ -1,0 +1,53 @@
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 50px;
+  height: 8vh;
+  color: white;
+  background-color: #13181f;
+}
+
+.navContainer h1 {
+  cursor: pointer;
+}
+
+.listContainer {
+  display: flex;
+}
+
+.listContainer button {
+  margin: 5px;
+  cursor: pointer;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 5px;
+  background-color: #435671;
+  color: white;
+}
+
+.tabContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tabContainer ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tabContainer ul li {
+  cursor: pointer;
+  font-size: 1.3rem;
+  color: white;
+  list-style-type: none;
+  margin: 10px 30px;
+  padding: 10px 20px;
+  transform: skew(-8deg);
+}
+
+.active {
+  background-color: #435671;
+}
