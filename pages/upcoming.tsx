@@ -4,21 +4,20 @@ import Grid from '../components/Grid';
 import { Game } from '../types';
 
 interface GameProps {
-  data: Game[];
+  games: Game[];
 }
 
-const Upcoming = ({ data }: GameProps) => {
-  return <Grid data={data} />;
+const Upcoming = ({ games }: GameProps) => {
+  return <Grid games={games} />;
 };
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { data } = await axios.get('http://localhost:3000/api/upcoming');
-  console.log('DATA FROM FRONT END', data);
-  const name = 'Daniel';
   return {
     props: {
-      data
-    }
+      games: data
+    },
+    revalidate: 6000
   };
 };
 

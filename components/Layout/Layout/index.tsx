@@ -8,14 +8,14 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ pageTitle, children }) => {
   return (
-    <>
+    <div style={{ position: 'relative', minHeight: '100vh' }}>
       <Head>
         <title>{pageTitle}</title>
       </Head>
       <Navigation />
       <main>{children}</main>
       <Footer />
-    </>
+    </div>
   );
 };
 
