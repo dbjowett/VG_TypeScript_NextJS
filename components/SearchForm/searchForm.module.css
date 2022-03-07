@@ -1,0 +1,22 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.form h1 {
+  margin: auto;
+  text-align: center;
+}
+.form input {
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  margin: 30px 5px 0 0;
+}
+.form button {
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  margin-left: 5px;
+  color: white;
+  background-color: #435671;
+}
