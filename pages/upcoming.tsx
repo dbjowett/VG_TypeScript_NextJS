@@ -15,9 +15,9 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const { data } = await axios.get('http://localhost:3000/api/upcoming');
   return {
     props: {
-      games: data
+      games: data,
     },
-    revalidate: 6000
+    revalidate: 6000,
   };
 };
 

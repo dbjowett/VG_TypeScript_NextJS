@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import igdb from '../../utils/igdb';
+import igdb from './utils/igdb';
 import { Game } from '../../types';
 
 interface Games {
@@ -15,19 +15,18 @@ const fetchSearched = async (term: string) => {
       where rating != null & category = 0;
       limit 20;
       `,
-    url: '/games/'
+    url: '/games/',
   });
   return response;
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Games>) {
-  const games = await fetchSearched(req.query.input.toString());
+  let input: string | string[] | undefined;
+  if (req.query && req.query.input) {
+    input = req.query.input.toString();
+  } else {
+    input = '';
+  }
+  const games = await fetchSearched(input);
   res.status(200).send(games.data);
 }
-
-// module.exports = (app) => {
-//   app.get('/api/search', async (req, res) => {
-//     const { data } = await fetchSearched(req.query.term);
-//     res.send(data);
-//   });
-// };

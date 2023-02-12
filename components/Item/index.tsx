@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { imageLoader } from '../../pages/utils';
 import { Game } from '../../types';
 import styles from './item.module.css';
 
@@ -11,11 +12,12 @@ export default function Item({ game }: GameProps) {
   const cover = game.cover
     ? game.cover.url.replace('t_thumb', 't_cover_big')
     : '//www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg';
+
   return (
     <Link passHref href={`/games/${game.id}`}>
       <div key={game.id.toString()} className={styles.gameItem}>
         {/* <img className={styles.gamePhoto} src={cover} alt={game.name} /> */}
-        <Image width='250px' height='250px' src={'https:' + cover} alt={game.name.toString()} objectFit='cover' />
+        <Image width={250} height={250} src={cover} loader={imageLoader} alt={game.name.toString()} />
         <div className={styles.gameDesc}>
           <h3 className={styles.gameName}>{game.name}</h3>
           <div className={styles.summary}>

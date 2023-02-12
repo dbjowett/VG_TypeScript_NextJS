@@ -7,8 +7,8 @@ const TopRated = ({}) => {
 export const getStaticProps: GetStaticProps = async (ctx) => {
   return {
     props: {
-      data: null
-    }
+      data: null,
+    },
   };
 };
 

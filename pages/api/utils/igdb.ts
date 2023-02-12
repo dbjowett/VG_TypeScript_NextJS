@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
-const getAuth = require('./twitch_auth');
+import getAuth from './twitch_auth';
 
 const client_id = process.env.TWITCH_ID || '';
 
@@ -8,8 +8,8 @@ const config: AxiosRequestConfig = {
   headers: {
     Accept: 'application/json',
     'Client-ID': client_id,
-    'Access-Control-Allow-Origin': '*'
-  }
+    'Access-Control-Allow-Origin': '*',
+  },
 };
 
 const instance: AxiosInstance = axios.create(config);
@@ -21,7 +21,6 @@ instance.interceptors.request.use(
       config.headers['Authorization'] = `Bearer ${token}`;
     } else {
       console.log(`Noauth`);
-      //   delete instance.defaults.headers['Authorization'];
     }
     return config;
   },

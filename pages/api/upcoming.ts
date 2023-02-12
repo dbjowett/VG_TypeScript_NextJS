@@ -1,6 +1,5 @@
-import { Axios } from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import igdb from '../../utils/igdb';
+import igdb from './utils/igdb';
 
 type Data = {
   name: string;
@@ -16,7 +15,7 @@ const options = {
         sort first_release_date asc; 
         limit 20;
             `,
-  url: '/games/'
+  url: '/games/',
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {

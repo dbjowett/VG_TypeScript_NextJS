@@ -3,7 +3,7 @@ import axios from 'axios';
 import styles from './searchForm.module.css';
 
 interface Props {
-  setGames: Dispatch<SetStateAction<string>>;
+  setGames: Dispatch<SetStateAction<Array<any>>>;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
 }
 

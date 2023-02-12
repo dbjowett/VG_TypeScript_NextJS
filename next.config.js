@@ -1,9 +1,12 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
+module.exports = {
   images: {
-    domains: ['images.igdb.com']
-  }
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.igdb.com',
+        port: '',
+        pathname: '/igdb/**',
+      },
+    ],
+  },
 };
-
-module.exports = nextConfig;
