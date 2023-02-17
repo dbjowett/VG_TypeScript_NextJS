@@ -5,9 +5,10 @@ import Navigation from '../Navigation';
 
 interface LayoutProps {
   pageTitle: string;
+  children: ReactNode;
 }
 
-const Layout: React.FC<LayoutProps> = ({ pageTitle, children }: { pageTitle: string; children: ReactNode }) => {
+const Layout: React.FC<LayoutProps> = ({ pageTitle, children }) => {
   return (
     <div style={{ position: 'relative', minHeight: '100vh' }}>
       <Head>

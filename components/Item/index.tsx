@@ -16,8 +16,7 @@ export default function Item({ game }: GameProps) {
   return (
     <Link passHref href={`/games/${game.id}`}>
       <div key={game.id.toString()} className={styles.gameItem}>
-        {/* <img className={styles.gamePhoto} src={cover} alt={game.name} /> */}
-        <Image width={250} height={250} src={cover} loader={imageLoader} alt={game.name.toString()} />
+        <Image width={264} height={352} quality={60} src={game.cover.url.toString()} loader={imageLoader} alt={game.name.toString()} />
         <div className={styles.gameDesc}>
           <h3 className={styles.gameName}>{game.name}</h3>
           <div className={styles.summary}>
