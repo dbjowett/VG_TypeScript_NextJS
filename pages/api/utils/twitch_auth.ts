@@ -1,13 +1,27 @@
 import axios from 'axios';
+import { TwitchParams } from './igdb';
 
-const getAuth = async () => {
-  const url = `https://id.twitch.tv/oauth2/token?client_id=${process.env.TWITCH_ID}&client_secret=${process.env.TWITCH_SECRET}&grant_type=${process.env.GRANT_TYPE}`;
+interface TwitchResponse {
+  access_token: string;
+  expires_in: number;
+  token_type: string;
+}
+
+const accessTokenUri = 'https://id.twitch.tv/oauth2/token';
+
+const getAuth = async (twitchParams: TwitchParams) => {
+  const searchParams = new URLSearchParams({ ...twitchParams });
+  const url = `${accessTokenUri}?${searchParams}`;
 
   try {
-    const response = await axios(url, { method: 'POST' });
-    return response.data.access_token;
+    const res = await axios.post(url);
+    if (res.data) {
+      return (res.data as TwitchResponse).access_token;
+    }
+    throw new Error('No data returned');
   } catch (error) {
     console.log(`Couldn't get authorization: `, error);
+    throw new Error('Getting Access Token Failed');
   }
 };
 

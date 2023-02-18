@@ -5,13 +5,12 @@ type Data = {
   name: string;
 };
 
-const timeNow = Math.floor(Date.now() / 1000);
 const options = {
   method: 'POST',
   data: `
         fields name, release_dates.*, summary, screenshots.image_id, cover.*, rating, genres.name, platforms.*; 
         where platforms= (6,48,49,130,169,167) & cover != null & category = 0 
-        & rating > 8; 
+        & rating > 9.5; 
         sort first_release_date asc; 
         limit 20;
             `,

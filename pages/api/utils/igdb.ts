@@ -1,13 +1,23 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import getAuth from './twitch_auth';
 
-const client_id = process.env.TWITCH_ID || '';
+export interface TwitchParams {
+  client_id: string;
+  client_secret: string;
+  grant_type: string;
+}
+
+const twitchParams: TwitchParams = {
+  client_id: process.env.TWITCH_ID || '',
+  client_secret: process.env.TWITCH_SECRET || '',
+  grant_type: process.env.GRANT_TYPE || '',
+};
 
 const config: AxiosRequestConfig = {
   baseURL: 'https://api.igdb.com/v4',
   headers: {
     Accept: 'application/json',
-    'Client-ID': client_id,
+    'Client-ID': twitchParams.client_id,
     'Access-Control-Allow-Origin': '*',
   },
 };
@@ -16,7 +26,7 @@ const instance: AxiosInstance = axios.create(config);
 
 instance.interceptors.request.use(
   async (config) => {
-    const token = await getAuth();
+    const token = await getAuth(twitchParams);
     if (token && config.headers) {
       config.headers['Authorization'] = `Bearer ${token}`;
     } else {
