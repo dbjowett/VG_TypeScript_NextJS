@@ -1,13 +1,28 @@
+import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import { GetStaticProps } from 'next';
+import Grid from '../components/Grid';
+import Loader from '../components/Loader';
+import { Game } from '../types';
+import { server } from './api/utils/server';
 
-const TopRated = ({}) => {
-  return <div>Top Rated</div>;
+const getTopRated = async () => {
+  const { data } = await axios.get(`${server}/api/toprated`);
+  return data as Game[];
 };
 
-export const getStaticProps: GetStaticProps = async (ctx) => {
+const TopRated = () => {
+  const { data, isLoading } = useQuery({ queryKey: ['upcoming'], queryFn: getTopRated });
+  if (isLoading) return <Loader />;
+  return <Grid games={data} />;
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery(['toprated'], getTopRated);
   return {
     props: {
-      data: null,
+      dehydratedState: dehydrate(queryClient),
     },
   };
 };
