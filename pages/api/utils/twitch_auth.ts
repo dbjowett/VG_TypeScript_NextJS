@@ -9,7 +9,7 @@ interface TwitchResponse {
 
 const accessTokenUri = 'https://id.twitch.tv/oauth2/token';
 
-const getAuth = async (twitchParams: TwitchParams) => {
+export const getTwitchAuth = async (twitchParams: TwitchParams) => {
   const searchParams = new URLSearchParams({ ...twitchParams });
   const url = `${accessTokenUri}?${searchParams}`;
 
@@ -24,5 +24,3 @@ const getAuth = async (twitchParams: TwitchParams) => {
     throw new Error('Getting Access Token Failed');
   }
 };
-
-export default getAuth;

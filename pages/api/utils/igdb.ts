@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
-import getAuth from './twitch_auth';
+import { getTwitchAuth } from './twitch_auth';
 
 export interface TwitchParams {
   client_id: string;
@@ -24,9 +24,10 @@ const config: AxiosRequestConfig = {
 
 const instance: AxiosInstance = axios.create(config);
 
+// Adds the Authorization header before the request happens
 instance.interceptors.request.use(
   async (config) => {
-    const token = await getAuth(twitchParams);
+    const token = await getTwitchAuth(twitchParams);
     if (token && config.headers) {
       config.headers['Authorization'] = `Bearer ${token}`;
     } else {
