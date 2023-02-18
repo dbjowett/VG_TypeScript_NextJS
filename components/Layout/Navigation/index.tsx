@@ -8,9 +8,9 @@ export default function Navigation() {
     <>
       <div className={styles.navContainer}>
         <h1>Video Games</h1>
-        <ul className={styles.listContainer}>
+        <div className={styles.listContainer}>
           <button>Login</button>
-        </ul>
+        </div>
       </div>
       <div className={styles.tabContainer}>
         <ul>

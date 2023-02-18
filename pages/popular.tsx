@@ -1,14 +1,29 @@
+import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import { GetStaticProps } from 'next';
+import Grid from '../components/Grid';
+import Loader from '../components/Loader';
+import { Game } from '../types';
+import { server } from './api/utils/server';
 
-const Popular = ({}) => {
-  return <div>Popular</div>;
+const getPopular = async () => {
+  const { data } = await axios.get(`${server}/api/popular`);
+  return data as Game[];
 };
 
-export const getStaticProps: GetStaticProps = async (ctx) => {
+const Popular = ({}) => {
+  const { data, isLoading } = useQuery({ queryKey: ['popular'], queryFn: getPopular });
+  if (isLoading) return <Loader />;
+  return <Grid games={data} />;
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery(['popular'], getPopular);
   return {
     props: {
-      data: null
-    }
+      dehydratedState: dehydrate(queryClient),
+    },
   };
 };
 
