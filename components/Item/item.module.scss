@@ -1,0 +1,67 @@
+$CardWidth: 300px;
+$CardHeight: 400px;
+
+.Container {
+  width: $CardWidth;
+  min-height: $CardHeight;
+  background-color: #3d4d62;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  align-items: center;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.017), 0 6.7px 5.3px rgba(0, 0, 0, 0.022), 0 12.5px 10px rgba(0, 0, 0, 0.027);
+
+  &:hover {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.315);
+  }
+
+  & .Image {
+    border-radius: 8px;
+    padding: 4px 4px 0 4px;
+    object-fit: cover;
+    object-position: 0 0;
+    width: $CardWidth;
+  }
+
+  & .GameDescContainer {
+    font-size: 14px;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: space-between;
+
+    & .Title {
+      font-size: 1.1rem;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    // Decription of Game
+    & .SummaryText {
+      color: rgba(255, 255, 255, 0.568);
+      height: 150px;
+      overflow-y: auto;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    // Boxes for bottom
+    & .InfoBox {
+      font-size: 10px;
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 4px;
+
+      & .Genre {
+        border-radius: 3px;
+        background-color: #b9334e;
+        padding: 5px 8px;
+      }
+    }
+  }
+}
