@@ -11,7 +11,7 @@ const sizes = [
   { quality: 8, name: 'screenshot_huge', size: '1280 x 720' },
   { quality: 9, name: '720p', size: '1280 x 720' },
   { quality: 10, name: '1080p', size: '1920 x 1080' },
-];
+] as const;
 
 export const imageLoader = ({ src, quality }: ImageLoaderProps) => {
   const qualityObj = sizes.find((size) => size.quality === (quality || 6) / 10);
