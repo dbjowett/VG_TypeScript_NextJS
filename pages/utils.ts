@@ -17,3 +17,11 @@ export const imageLoader = ({ src, quality }: ImageLoaderProps) => {
   const qualityObj = sizes.find((size) => size.quality === (quality || 6) / 10);
   return src.replace(/(t_)\w+/, `$1${qualityObj?.name}`);
 };
+
+export const getID = (id: string | string[]): string => {
+  if (typeof id === 'object') {
+    return id.reverse()[0];
+  } else {
+    return id || '';
+  }
+};
