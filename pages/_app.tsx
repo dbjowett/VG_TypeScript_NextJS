@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Layout pageTitle='VideoGames'>
           <Component {...pageProps} />
         </Layout>
-        <ReactQueryDevtools initialIsOpen />
+        <ReactQueryDevtools />
       </Hydrate>
     </QueryClientProvider>
   );

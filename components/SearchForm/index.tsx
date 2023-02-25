@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import axios from 'axios';
 import styles from './searchForm.module.css';
+import { server } from '../../pages/api/utils/server';
 
 interface Props {
   setGames: Dispatch<SetStateAction<Array<any>>>;
@@ -13,9 +14,9 @@ export default function Grid({ setGames, setIsLoading }: Props) {
   async function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     setIsLoading(true);
     e.preventDefault();
-    setInput('');
-    const { data } = await axios.get(`http://localhost:3000/api/search/?input=${input} `);
+    const { data } = await axios.get(`${server}/api/search/?input=${input} `);
     setGames(data);
+    setInput('');
     setIsLoading(false);
   }
 

@@ -1,15 +1,8 @@
 import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import { GetStaticProps } from 'next';
 import Grid from '../components/Grid';
 import Loader from '../components/Loader';
-import { Game } from '../types';
-import { server } from './api/utils/server';
-
-const getPopular = async () => {
-  const { data } = await axios.get(`${server}/api/popular`);
-  return data as Game[];
-};
+import { getPopular } from './api/popular';
 
 const Popular = ({}) => {
   const { data, isLoading } = useQuery({ queryKey: ['popular'], queryFn: getPopular });

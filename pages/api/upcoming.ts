@@ -1,11 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
 import igdb from './utils/igdb';
 import { Platforms } from './utils/constants';
-
-type Data = {
-  name: string;
-};
-
+import { Game } from '../../types';
 const { PS5, XBOX_SERIES, PS4, SWITCH, STEAM_OS, PC } = Platforms;
 
 const timeNow = Math.floor(Date.now() / 1000);
@@ -21,7 +16,7 @@ const options = {
   url: '/games/',
 };
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
+export const getUpcoming = async () => {
   const { data } = await igdb(options);
-  res.status(200).send(data);
-}
+  return data as Game[];
+};

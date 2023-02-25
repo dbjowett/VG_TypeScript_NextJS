@@ -1,19 +1,8 @@
 import { GetStaticProps } from 'next';
-import axios from 'axios';
 import Grid from '../components/Grid';
-import { Game } from '../types';
 import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query';
 import Loader from '../components/Loader';
-import { server } from './api/utils/server';
-
-interface GameProps {
-  games: Game[];
-}
-
-const getUpcoming = async () => {
-  const { data } = await axios.get(`${server}/api/upcoming`);
-  return data as Game[];
-};
+import { getUpcoming } from './api/upcoming';
 
 const Upcoming = () => {
   const { data, isLoading } = useQuery({ queryKey: ['upcoming'], queryFn: getUpcoming });

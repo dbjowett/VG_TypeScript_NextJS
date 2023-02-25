@@ -1,9 +1,5 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { Game } from '../../types';
 import igdb from './utils/igdb';
-
-type Data = {
-  name: string;
-};
 
 const options = {
   method: 'POST',
@@ -16,7 +12,7 @@ const options = {
   url: '/games/',
 };
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
+export const getTopRated = async () => {
   const { data } = await igdb(options);
-  res.status(200).send(data);
-}
+  return data as Game[];
+};
