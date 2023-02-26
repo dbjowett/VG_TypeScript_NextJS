@@ -11,14 +11,22 @@ const timeNow = Math.floor(Date.now() / 1000);
 const options = {
   method: 'POST',
   data: `
-          fields name, release_dates.*, summary, screenshots.image_id, cover.*, rating, genres.name, platforms.*; 
-          where platforms= (${PS5},${XBOX_SERIES},${PS4},${PC},${SWITCH},${STEAM_OS}) & cover != null & category = 0 
-          & first_release_date != n & first_release_date >${timeNow}; 
-          sort first_release_date asc; 
+          fields name, release_dates.*, summary, screenshots.image_id, cover.*, rating, genres.name, platforms.*;
+          where platforms= (${PS5},${XBOX_SERIES},${PS4},${PC},${SWITCH},${STEAM_OS}) & cover != null & category = 0
+          & first_release_date != n & first_release_date >${timeNow};
+          sort first_release_date asc;
           limit 20;
               `,
   url: '/games/',
 };
+// const options = {
+//   method: 'POST',
+//   data: `
+//           fields *;
+//           limit 20;
+//               `,
+//   url: '/games/',
+// };
 
 // Serverside Req
 const fetchUpcomingSsr = async () => {
@@ -33,6 +41,7 @@ const fetchUpcoming = async () => {
       'Content-Type': 'application/json',
     },
   });
+  console.log('UPCOMING DATA', data);
   return data as Game[];
 };
 
