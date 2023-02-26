@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { server } from './api/utils/server';
 import axios from 'axios';
-import { getID } from './utils';
 import Loader from '../components/Loader';
 import { SingleGameType } from '../types';
+import { getId } from './utils';
 
 export default function SingleGame() {
   const [gameData, setGameData] = useState<SingleGameType | null>(null);
@@ -17,7 +17,7 @@ export default function SingleGame() {
 
   useEffect(() => {
     if (!id) return;
-    let gameId = Array.isArray(id) ? id.find((item) => item !== 'games') : id;
+    let gameId = getId(id);
 
     async function fetchData(gameId: string) {
       const res = await getCurrentGame(gameId);

@@ -18,10 +18,7 @@ export const imageLoader = ({ src, quality }: ImageLoaderProps) => {
   return src.replace(/(t_)\w+/, `$1${qualityObj?.name}`);
 };
 
-export const getID = (id: string | string[]): string => {
-  if (typeof id === 'object') {
-    return id.reverse()[0];
-  } else {
-    return id || '';
-  }
+export const getId = (id: string | string[]): string => {
+  const gameId = Array.isArray(id) ? id.find((item) => item !== 'games') : id;
+  return gameId || '';
 };
