@@ -9,7 +9,7 @@ const Search = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <SearchForm setGames={setGames} setIsLoading={setIsLoading} />
-      {!isLoading && <Grid games={games} />}
+      {!isLoading && games && <Grid games={games} />}
       {isLoading && <Loader />}
     </div>
   );

@@ -13,16 +13,18 @@ const twitchParams: TwitchParams = {
   grant_type: process.env.GRANT_TYPE || '',
 };
 
-const config: AxiosRequestConfig = {
-  baseURL: 'https://api.igdb.com/v4',
-  headers: {
-    Accept: 'application/json',
-    'Client-ID': twitchParams.client_id,
-    'Access-Control-Allow-Origin': '*',
-  },
+const defaultHeaders = {
+  Accept: 'application/json',
+  'Client-ID': twitchParams.client_id,
+  'Access-Control-Allow-Origin': '*',
 };
 
-const instance: AxiosInstance = axios.create(config);
+const defaultConfig: AxiosRequestConfig = {
+  baseURL: 'https://api.igdb.com/v4',
+  headers: defaultHeaders,
+};
+
+const instance: AxiosInstance = axios.create(defaultConfig);
 
 instance.interceptors.request.use(
   async (config) => {
@@ -30,7 +32,7 @@ instance.interceptors.request.use(
     if (token && config.headers) {
       config.headers['Authorization'] = `Bearer ${token}`;
     } else {
-      console.log(`Noauth`);
+      console.log(`No Authorization`);
     }
     return config;
   },
