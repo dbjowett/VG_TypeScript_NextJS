@@ -19,14 +19,6 @@ const options = {
               `,
   url: '/games/',
 };
-// const options = {
-//   method: 'POST',
-//   data: `
-//           fields *;
-//           limit 20;
-//               `,
-//   url: '/games/',
-// };
 
 // Serverside Req
 const fetchUpcomingSsr = async () => {
