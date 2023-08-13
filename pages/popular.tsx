@@ -1,8 +1,8 @@
-import { GetStaticProps } from 'next';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
+import { GetStaticProps } from 'next';
 
-import Loader from '../components/Loader';
 import Grid from '../components/Grid';
+import Loader from '../components/Loader';
 import { fetchPopularSsr, usePopular } from '../hooks/usePopular';
 
 const Popular = () => {

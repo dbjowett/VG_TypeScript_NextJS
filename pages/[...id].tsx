@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { server } from './api/utils/server';
 import axios from 'axios';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import Loader from '../components/Loader';
 import { SingleGameType } from '../types';
+import { server } from './api/utils/server';
 import { getId } from './utils';
 
 export default function SingleGame() {

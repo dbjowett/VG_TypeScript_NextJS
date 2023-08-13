@@ -1,8 +1,8 @@
-import { Game } from '../../types';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import igdb from '../../pages/api/utils/igdb';
 import { Platforms } from '../../pages/api/utils/constants';
+import igdb from '../../pages/api/utils/igdb';
+import { Game } from '../../types';
 
 const { PS5, XBOX_SERIES, PS4, SWITCH, STEAM_OS, PC } = Platforms;
 
@@ -33,7 +33,6 @@ const fetchUpcoming = async () => {
       'Content-Type': 'application/json',
     },
   });
-  console.log('UPCOMING DATA', data);
   return data as Game[];
 };
 
@@ -44,4 +43,4 @@ const useUpcoming = () => {
   });
 };
 
-export { useUpcoming, fetchUpcoming, fetchUpcomingSsr };
+export { fetchUpcoming, fetchUpcomingSsr, useUpcoming };

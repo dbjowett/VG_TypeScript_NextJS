@@ -1,5 +1,5 @@
-import Item from '../Item';
 import { Game } from '../../types';
+import Item from '../Item';
 import styles from './grid.module.css';
 
 interface Props {

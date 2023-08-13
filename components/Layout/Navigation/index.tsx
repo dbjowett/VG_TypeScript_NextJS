@@ -1,6 +1,6 @@
-import styles from './navigation.module.css';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import styles from './navigation.module.css';
 
 export default function Navigation() {
   const { pathname } = useRouter();
