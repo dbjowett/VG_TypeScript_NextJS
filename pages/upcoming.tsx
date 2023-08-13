@@ -4,7 +4,6 @@ import { GetStaticProps } from 'next';
 import Grid from '../components/Grid';
 import Loader from '../components/Loader';
 import { fetchUpcomingSsr, useUpcoming } from '../hooks/useUpcoming';
-const queryClient = new QueryClient();
 
 const Upcoming = () => {
   const { data, isLoading } = useUpcoming();
@@ -14,6 +13,7 @@ const Upcoming = () => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
+  const queryClient = new QueryClient();
   await queryClient.prefetchQuery(['upcoming'], fetchUpcomingSsr);
   return {
     props: {
